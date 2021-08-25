@@ -1,6 +1,7 @@
 /// errors : [{"code":"l_name","message":"The last name field is required."},{"code":"password","message":"The password field is required."}]
 
 class ErrorResponse {
+
   late List<Errors> _errors;
 
   List<Errors> get errors => _errors;
@@ -20,12 +21,10 @@ class ErrorResponse {
 
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
-    // ignore: unnecessary_null_comparison
-    if (_errors != null) {
-      map["errors"] = _errors.map((v) => v.toJson()).toList();
-    }
+    map["errors"] = _errors.map((v) => v.toJson()).toList();
     return map;
   }
+
 }
 
 /// code : "l_name"
@@ -38,10 +37,12 @@ class Errors {
   String get code => _code;
   String get message => _message;
 
-  Errors({String? code, String? message}) {
+  Errors({
+      String? code,
+      String? message}){
     _code = code!;
     _message = message!;
-  }
+}
 
   Errors.fromJson(dynamic json) {
     _code = json["code"];
@@ -54,4 +55,5 @@ class Errors {
     map["message"] = _message;
     return map;
   }
+
 }
