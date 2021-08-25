@@ -7,18 +7,16 @@ class SignUpModel {
   String get status => _status;
   Data get data => _data;
 
-  SignUpModel({
-      int? code,
-      String? status,
-      Data? data}){
+  SignUpModel({int? code, String? status, Data? data}) {
     _code = code!;
     _status = status!;
     _data = data!;
-}
+  }
 
   SignUpModel.fromJson(dynamic json) {
     _code = json["code"];
     _status = json["status"];
+    // ignore: null_check_always_fails
     _data = json["data"] != null ? Data.fromJson(json["data"]) : null!;
   }
 
@@ -26,12 +24,12 @@ class SignUpModel {
     var map = <String, dynamic>{};
     map["code"] = _code;
     map["status"] = _status;
+    // ignore: unnecessary_null_comparison
     if (_data != null) {
       map["data"] = _data.toJson();
     }
     return map;
   }
-
 }
 
 class Data {
@@ -57,8 +55,8 @@ class Data {
   String get status => _status;
   bool get admin => _admin;
 
-  Data({
-      dynamic id, 
+  Data(
+      {dynamic id,
       String? name,
       int? mobileNum,
       String? password,
@@ -67,7 +65,7 @@ class Data {
       int? referredBy,
       int? undersignedOf,
       String? status,
-      bool? admin}){
+      bool? admin}) {
     _id = id;
     _name = name!;
     _mobileNum = mobileNum!;
@@ -78,7 +76,7 @@ class Data {
     _undersignedOf = undersignedOf!;
     _status = status!;
     _admin = admin!;
-}
+  }
 
   Data.fromJson(dynamic json) {
     _id = json["id"];
@@ -107,5 +105,4 @@ class Data {
     map["admin"] = _admin;
     return map;
   }
-
 }

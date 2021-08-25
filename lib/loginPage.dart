@@ -1,5 +1,5 @@
 import 'package:flpapp/Images.dart';
-import 'package:flpapp/Utils.dart';
+import 'package:flpapp/homepage.dart';
 import 'package:flutter/material.dart';
 
 import 'ColorResources.dart';
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        String mobilenumber = mobileNumberController.text;
+                        /*String mobilenumber = mobileNumberController.text;
                         String password = passwordController.text;
                         if (mobilenumber.isEmpty || password.isEmpty) {
                           showSnackbar("All fields should be Filled");
@@ -81,7 +81,11 @@ class _LoginPageState extends State<LoginPage> {
                         if (!Utils.isNumeric(mobilenumber)) {
                           showSnackbar("Wrong Input");
                           return;
-                        }
+                        }*/
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
+                        );
                       },
                       child: Container(
                         alignment: Alignment.center,

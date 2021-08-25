@@ -5,7 +5,6 @@ import 'package:flpapp/remote/repository/auth_repo.dart';
 import 'package:flutter/foundation.dart';
 
 class AuthProvider with ChangeNotifier {
-
   final AuthRepo authRepo;
 
   AuthProvider({required this.authRepo});
@@ -27,13 +26,20 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<ResponseModel> registration({String? name, String? mobile, String? referredBy, String? password}) async {
+  Future<ResponseModel> registration(
+      {String? name,
+      String? mobile,
+      String? referredBy,
+      String? password}) async {
     _isLoading = true;
     _registrationErrorMessage = '';
     notifyListeners();
-    ApiResponse apiResponse = await authRepo.registration(name: name, mobile: mobile, referredBy: referredBy, password: password);
+    ApiResponse apiResponse = await authRepo.registration(
+        name: name, mobile: mobile, referredBy: referredBy, password: password);
     ResponseModel responseModel;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    // ignore: unnecessary_null_comparison
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       Map map = apiResponse.response.data;
       String token = map["token"];
       authRepo.saveUserToken(token);
@@ -64,9 +70,12 @@ class AuthProvider with ChangeNotifier {
     _isLoading = true;
     _loginErrorMessage = '';
     notifyListeners();
-    ApiResponse apiResponse = await authRepo.login(mobile: mobile, password: password);
+    ApiResponse apiResponse =
+        await authRepo.login(mobile: mobile, password: password);
     ResponseModel responseModel;
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    // ignore: unnecessary_null_comparison
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       Map map = apiResponse.response.data;
       String token = map["token"];
       authRepo.saveUserToken(token);

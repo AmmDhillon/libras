@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:dio/dio.dart';
 import 'package:flpapp/api_constants.dart';
 import 'package:flpapp/remote/dio/api_error_handler.dart';
@@ -8,17 +6,25 @@ import 'package:flpapp/remote/model/api_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepo {
-
   final DioClient dioClient;
   late SharedPreferences sharedPreferences;
 
   AuthRepo({required this.dioClient});
 
-  Future<ApiResponse> registration({String? name, String? mobile, String? referredBy, String? password}) async {
+  Future<ApiResponse> registration(
+      {String? name,
+      String? mobile,
+      String? referredBy,
+      String? password}) async {
     try {
       Response response = await dioClient.post(
         APIConstants.SIGN_UP,
-        data: {"name": name, "mobile_num": mobile, "referred_by": referredBy, "password": password},
+        data: {
+          "name": name,
+          "mobile_num": mobile,
+          "referred_by": referredBy,
+          "password": password
+        },
       );
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -41,7 +47,10 @@ class AuthRepo {
 
   Future<void> saveUserToken(String token) async {
     // dioClient.token = token;
-    dioClient.dio.options.headers = {'Content-Type': 'application/json; charset=UTF-8', 'Authorization': 'Bearer $token'};
+    dioClient.dio.options.headers = {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer $token'
+    };
 
     try {
       await sharedPreferences.setString(APIConstants.TOKEN, token);

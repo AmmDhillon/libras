@@ -1,19 +1,15 @@
-import 'package:dio/dio.dart';
 import 'package:flpapp/ColorResources.dart';
 import 'package:flpapp/Images.dart';
 import 'package:flpapp/Utils.dart';
-import 'package:flpapp/api_constants.dart';
+
 import 'package:flpapp/loginPage.dart';
-import 'package:flpapp/remote/dio/dio_client.dart';
-import 'package:flpapp/remote/dio/logging_interceptor.dart';
+
 import 'package:flpapp/remote/provider/auth_provider.dart';
-import 'package:flpapp/remote/repository/auth_repo.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpPage extends StatefulWidget {
-
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
@@ -30,17 +26,17 @@ class _SignUpPageState extends State<SignUpPage> {
     // Provider.of<AuthProvider>(context, listen: false);
 
     return Scaffold(
-      backgroundColor: ColorResources.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          "Sign Up Here",
-          style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+        backgroundColor: ColorResources.white,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Text(
+            "Sign Up Here",
+            style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+          ),
+          toolbarHeight: 100,
+          centerTitle: true,
         ),
-        toolbarHeight: 100,
-        centerTitle: true,
-      ),
-      body: ListView(
+        body: ListView(
           padding: EdgeInsets.fromLTRB(30, 80, 30, 0),
           children: [
             Row(
@@ -96,8 +92,10 @@ class _SignUpPageState extends State<SignUpPage> {
                           SizedBox(
                             height: 20,
                           ),
-                          inputText("Re-Enter Above Password",
-                              confirmPasswordController, "Field Can't be Empty"),
+                          inputText(
+                              "Re-Enter Above Password",
+                              confirmPasswordController,
+                              "Field Can't be Empty"),
                           SizedBox(
                             height: 20,
                           ),
@@ -107,7 +105,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               String mobileNum = mobileNumController.text;
                               String referredBy = referredByController.text;
                               String password = passwordController.text;
-                              String confirmPassword = confirmPasswordController.text;
+                              String confirmPassword =
+                                  confirmPasswordController.text;
 
                               if (name.isEmpty ||
                                   mobileNum.isEmpty ||
@@ -149,9 +148,15 @@ class _SignUpPageState extends State<SignUpPage> {
 
                               // API Call
                               Provider.of<AuthProvider>(context, listen: false)
-                                  .registration(name: name, mobile: mobileNum, referredBy: referredBy, password: password).then((value) async {
+                                  .registration(
+                                      name: name,
+                                      mobile: mobileNum,
+                                      referredBy: referredBy,
+                                      password: password)
+                                  .then((value) async {
                                 if (value.isSuccess) {
-                                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => LoginPage()));
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => LoginPage()));
                                 } else {
                                   showSnackbar(value.message);
                                 }
@@ -163,8 +168,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               height: 63,
                               child: Text(
                                 "SignUp",
-                                style:
-                                    TextStyle(fontSize: 20, color: Colors.white),
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
                               ),
                               decoration: BoxDecoration(
                                   gradient: LinearGradient(
@@ -218,8 +223,7 @@ class _SignUpPageState extends State<SignUpPage> {
               height: 10,
             )
           ],
-        )
-    );
+        ));
   }
 
   Widget inputText(
