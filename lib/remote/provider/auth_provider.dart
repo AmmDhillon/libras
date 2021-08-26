@@ -37,20 +37,12 @@ class AuthProvider with ChangeNotifier {
     ResponseModel responseModel;
     if (apiResponse.response.statusCode == 200) {
       Map map = apiResponse.response.data;
-      String token = map["token"];
-      authRepo.saveUserToken(token);
-      responseModel = ResponseModel(true, 'successful');
+      String msg = map["msg"];
+      // authRepo.saveUserToken(token);
+      responseModel = ResponseModel(true, msg);
     } else {
-      String errorMessage;
-      if (apiResponse.error is String) {
-        errorMessage = apiResponse.error.toString();
-      } else {
-        ErrorResponse errorResponse = apiResponse.error;
-        errorMessage = errorResponse.errors[0].message;
-      }
-      print(errorMessage);
-      _registrationErrorMessage = errorMessage;
-      responseModel = ResponseModel(false, errorMessage);
+      String msg = apiResponse.error.toString();
+      responseModel = ResponseModel(false, msg);
     }
     _isLoading = false;
     notifyListeners();

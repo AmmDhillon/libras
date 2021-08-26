@@ -1,8 +1,13 @@
+import 'dart:html';
+
 import 'package:flpapp/Images.dart';
-import 'package:flpapp/dashboard.dart';
+import 'package:flpapp/homepage.dart';
+import 'package:flpapp/remote/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'ColorResources.dart';
+import 'Utils.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -68,24 +73,34 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        /*String mobilenumber = mobileNumberController.text;
+                        String mobileNumber = mobileNumberController.text;
                         String password = passwordController.text;
-                        if (mobilenumber.isEmpty || password.isEmpty) {
+
+                        if (mobileNumber.isEmpty || password.isEmpty) {
                           showSnackbar("All fields should be Filled");
                           return;
                         }
-                        if (mobilenumber.length != 10) {
+                        if (mobileNumber.length != 10) {
                           showSnackbar("Fill Valid Mobile Number");
                           return;
                         }
-                        if (!Utils.isNumeric(mobilenumber)) {
+                        if (!Utils.isNumeric(mobileNumber)) {
                           showSnackbar("Wrong Input");
                           return;
-                        }*/
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Dashboard()),
-                        );
+                        }
+
+                        // API Call
+                        Provider.of<AuthProvider>(context, listen: false)
+                            .login(mobileNumber, password)
+                            .then((value) async {
+                          if (value.isSuccess) {
+                            showSnackbar(value.message, isError: false);
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) => HomePage()));
+                          } else {
+                            showSnackbar(value.message);
+                          }
+                        });
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -149,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void showSnackbar(String err) {
+  void showSnackbar(String err, {bool isError = true}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
           backgroundColor: ColorResources.buttonDarkOrange,

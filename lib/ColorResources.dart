@@ -6,4 +6,5 @@ class ColorResources {
   static Color buttonOrange = Color(0xffff9f3f);
   static Color buttonDarkOrange = Color(0xffff4b00);
   static Color white = Colors.white;
+  static Color green = Colors.green;
 }

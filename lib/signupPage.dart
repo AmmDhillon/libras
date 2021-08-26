@@ -133,19 +133,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                 return;
                               }
 
-                              // var loggin = LoggingInterceptor();
-                              // var authRepo = AuthRepo(dioClient: DioClient(baseUrl: APIConstants.BASE_URL, dio: Dio(), loggingInterceptor: loggin));
-                              //
-                              // AuthProvider authProvider = AuthProvider(authRepo: authRepo);
-                              //
-                              // authProvider.registration(name: name, mobile: mobileNum, referredBy: referredBy, password: password).then((value) async {
-                              //   if (value.isSuccess) {
-                              //     Navigator.of(context).push(MaterialPageRoute(builder: (_) => LoginPage()));
-                              //   } else {
-                              //     showSnackbar(value.message);
-                              //   }
-                              // });
-
                               // API Call
                               Provider.of<AuthProvider>(context, listen: false)
                                   .registration(
@@ -155,6 +142,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       password: password)
                                   .then((value) async {
                                 if (value.isSuccess) {
+                                  showSnackbar(value.message, isError: false);
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (_) => LoginPage()));
                                 } else {
@@ -261,10 +249,10 @@ class _SignUpPageState extends State<SignUpPage> {
         ));
   }
 
-  void showSnackbar(String err) {
+  void showSnackbar(String err, {bool isError = true}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-          backgroundColor: ColorResources.buttonDarkOrange,
+          backgroundColor: isError ? ColorResources.buttonDarkOrange : ColorResources.green,
           content: Container(
               alignment: Alignment.center,
               height: 40,
