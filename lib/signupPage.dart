@@ -37,11 +37,11 @@ class _SignUpPageState extends State<SignUpPage> {
           centerTitle: true,
         ),
         body: ListView(
-          padding: EdgeInsets.fromLTRB(30, 80, 30, 0),
+          padding: EdgeInsets.fromLTRB(00, 80, 0, 0),
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(padding: EdgeInsets.only(left: 100)),
                 Container(
                     alignment: Alignment.topCenter,
                     height: 650,
@@ -66,7 +66,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     Container(
                       width: 600,
-                      height: 800,
                       child: Expanded(
                           child: Column(
                         children: [
@@ -207,9 +206,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 10,
-            )
           ],
         ));
   }

@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: ColorResources.appbarGrey,
       ),
-      home: MyProfile(),
+      home: FirstScreen(),
     );
   }
 }

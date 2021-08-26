@@ -34,9 +34,9 @@ class _LoginPageState extends State<LoginPage> {
         centerTitle: true,
       ),
       body: ListView(
-        padding: EdgeInsets.fromLTRB(30, 80, 30, 0),
+        padding: EdgeInsets.fromLTRB(0, 80, 0, 0),
         children: [
-          Row(
+          Row(mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(padding: EdgeInsets.only(left: 100)),
               Container(
@@ -127,9 +127,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ],
           ),
-          SizedBox(
-            height: 500,
-          )
         ],
       ),
     );
