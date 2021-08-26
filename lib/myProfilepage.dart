@@ -1,3 +1,4 @@
+import 'package:flpapp/Images.dart';
 import 'package:flpapp/dashboard.dart';
 import 'package:flpapp/treePage.dart';
 import 'package:flutter/cupertino.dart';
@@ -64,14 +65,80 @@ class _MyProfileState extends State<MyProfile> {
           ),
         ],
       ),
+      body: SingleChildScrollView(
+          padding: EdgeInsets.only(top: 30),
+          child: Column(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  table("Level"),
+                  table("Team"),
+                  table("Total Income"),
+                  table("Auto Upgrade"),
+                  table("Auto Debit"),
+                  table("Total Profit"),
+                  table("INR Income"),
+                ],
+              ),
+              ListView.builder(
+                  itemCount: 7,
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return listItem();
+                  })
+            ],
+          )),
     );
   }
 
-  Widget barButtons(String txt, Function() ontap) {
+///////////////////////////////////////////////////////////////
+
+  Widget dataRows(String rowNam, Color col) {
+    return Container(
+        alignment: Alignment.center,
+        height: 50,
+        width: 160,
+        color: col,
+        child: Text(
+          rowNam,
+          style: TextStyle(fontSize: 20, color: ColorResources.white),
+        ));
+  }
+
+  Container listItem() {
+    return Container(
+      margin: EdgeInsets.only(top: 2),
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        dataRows("1", Colors.orange.shade300),
+        dataRows("2", Colors.orange.shade400),
+        dataRows("\$40", Colors.orange.shade500),
+        dataRows("\$28", Colors.orange.shade600),
+        dataRows("\$14", Colors.orange.shade700),
+        dataRows("\$12", Colors.orange.shade800),
+        dataRows("Rs. 900", Colors.orange.shade900),
+      ]),
+    );
+  }
+
+  Widget table(String rowName) {
+    return Container(
+        alignment: Alignment.center,
+        height: 70,
+        width: 160,
+        color: ColorResources.buttonDarkOrange,
+        child: Text(
+          rowName,
+          style: TextStyle(fontSize: 20, color: ColorResources.white),
+        ));
+  }
+
+  Widget barButtons(String txt, Function() onTap) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
-        onTap: ontap,
+        onTap: onTap,
         child: Container(
           alignment: Alignment.center,
           child: Text(

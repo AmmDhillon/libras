@@ -1,5 +1,6 @@
 import 'package:flpapp/ColorResources.dart';
 import 'package:flpapp/firstScreen.dart';
+import 'package:flpapp/myProfilepage.dart';
 
 import 'package:flpapp/remote/provider/auth_provider.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: ColorResources.appbarGrey,
       ),
-      home: FirstScreen(),
+      home: MyProfile(),
     );
   }
 }

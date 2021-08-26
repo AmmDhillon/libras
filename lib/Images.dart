@@ -18,4 +18,5 @@ class Images {
   static String highfive = "assets/images/highfive.png";
   static String book = "assets/images/openbook.png";
   static String whiteBoard = "assets/images/sqaures.png";
+  static String profile = "assets/images/profile.png";
 }
