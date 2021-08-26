@@ -1,13 +1,13 @@
 import 'dart:html';
 
 import 'package:flpapp/Images.dart';
-import 'package:flpapp/homepage.dart';
 import 'package:flpapp/remote/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'ColorResources.dart';
 import 'Utils.dart';
+import 'dashboard.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                           if (value.isSuccess) {
                             showSnackbar(value.message, isError: false);
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (_) => HomePage()));
+                                builder: (_) => Dashboard()));
                           } else {
                             showSnackbar(value.message);
                           }
