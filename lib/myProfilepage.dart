@@ -67,60 +67,41 @@ class _MyProfileState extends State<MyProfile> {
       ),
       body: SingleChildScrollView(
           padding: EdgeInsets.only(top: 30),
-          child: Column(
+          child: Row(
             children: [
+              Image.asset(Images.profile),
+              SizedBox(
+                width: 100,
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  table("Name"),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  table("Mobile No."),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  table("Joining Date"),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  table("Status"),
+                  SizedBox(
+                    height: 10,
+                  ),
                   table("Level"),
-                  table("Team"),
-                  table("Total Income"),
-                  table("Auto Upgrade"),
-                  table("Auto Debit"),
-                  table("Total Profit"),
-                  table("INR Income"),
                 ],
               ),
-              ListView.builder(
-                  itemCount: 7,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return listItem();
-                  })
+              userInfo(1213)
             ],
           )),
     );
   }
 
-///////////////////////////////////////////////////////////////
-
-  Widget dataRows(String rowNam, Color col) {
-    return Container(
-        alignment: Alignment.center,
-        height: 50,
-        width: 160,
-        color: col,
-        child: Text(
-          rowNam,
-          style: TextStyle(fontSize: 20, color: ColorResources.white),
-        ));
-  }
-
-  Container listItem() {
-    return Container(
-      margin: EdgeInsets.only(top: 2),
-      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        dataRows("1", Colors.orange.shade300),
-        dataRows("2", Colors.orange.shade400),
-        dataRows("\$40", Colors.orange.shade500),
-        dataRows("\$28", Colors.orange.shade600),
-        dataRows("\$14", Colors.orange.shade700),
-        dataRows("\$12", Colors.orange.shade800),
-        dataRows("Rs. 900", Colors.orange.shade900),
-      ]),
-    );
-  }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   Widget table(String rowName) {
     return Container(
@@ -130,6 +111,32 @@ class _MyProfileState extends State<MyProfile> {
         color: ColorResources.buttonDarkOrange,
         child: Text(
           rowName,
+          style: TextStyle(fontSize: 20, color: ColorResources.white),
+        ));
+  }
+
+  Widget userInfo(var info) {
+    return Container(
+        margin: EdgeInsets.only(top: 2),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          dataRows("1", Colors.orange.shade300),
+          dataRows("2", Colors.orange.shade400),
+          dataRows("\$40", Colors.orange.shade500),
+          dataRows("\$28", Colors.orange.shade600),
+          dataRows("\$14", Colors.orange.shade700),
+          dataRows("\$12", Colors.orange.shade800),
+          dataRows("Rs. 900", Colors.orange.shade900),
+        ]));
+  }
+
+  Widget dataRows(String rowNam, Color col) {
+    return Container(
+        alignment: Alignment.center,
+        height: 50,
+        width: 160,
+        color: col,
+        child: Text(
+          rowNam,
           style: TextStyle(fontSize: 20, color: ColorResources.white),
         ));
   }
