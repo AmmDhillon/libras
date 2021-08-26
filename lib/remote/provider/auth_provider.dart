@@ -31,12 +31,13 @@ class AuthProvider with ChangeNotifier {
     _isLoading = true;
     _registrationErrorMessage = '';
     notifyListeners();
+
     ApiResponse apiResponse = await authRepo.registration(name: name, mobile: mobile, referredBy: referredBy, password: password);
-    // String apiResponse = await authRepo.registration(name: name, mobile: mobile, referredBy: referredBy, password: password);
-    print(apiResponse);
+
     ResponseModel responseModel;
-    if (apiResponse.response.statusCode == 200) {
-      Map map = apiResponse.response.data;
+
+    if (apiResponse.response["code"] == 200) {
+      Map map = apiResponse.response;
       String msg = map["msg"];
       // authRepo.saveUserToken(token);
       responseModel = ResponseModel(true, msg);
@@ -58,23 +59,19 @@ class AuthProvider with ChangeNotifier {
     _isLoading = true;
     _loginErrorMessage = '';
     notifyListeners();
+
     ApiResponse apiResponse = await authRepo.login(mobile: mobile, password: password);
+
     ResponseModel responseModel;
-    if (apiResponse.response.statusCode == 200) {
-      Map map = apiResponse.response.data;
-      String token = map["token"];
-      authRepo.saveUserToken(token);
+
+    if (apiResponse.response["code"] == 200) {
+      Map map = apiResponse.response;
+      // authRepo.saveUserToken(token);
       responseModel = ResponseModel(true, 'successful');
     } else {
-      String errorMessage;
-      if (apiResponse.error is String) {
-        errorMessage = apiResponse.error.toString();
-      } else {
-        errorMessage = apiResponse.error.errors[0].message;
-      }
-      print(errorMessage);
-      _loginErrorMessage = errorMessage;
-      responseModel = ResponseModel(false, errorMessage);
+      // Map map = apiResponse.error;
+      // String msg = map["msg"];
+      responseModel = ResponseModel(false, apiResponse.error.toString());
     }
     _isLoading = false;
     notifyListeners();

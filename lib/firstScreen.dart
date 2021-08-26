@@ -93,7 +93,8 @@ class _FirstScreenState extends State<FirstScreen> {
       ),
       body: ListView(
         children: <Widget>[
-          Row(children: [
+          Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
             Container(
               padding: EdgeInsets.only(left: 30),
               child: Image.asset(

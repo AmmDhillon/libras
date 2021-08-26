@@ -23,24 +23,33 @@ class AuthRepo {
         data: {"name": name, "mobile_num": mobile, "referred_by": referredBy, "password": password},
         options: new Options(contentType: "application/x-www-form-urlencoded")
       );
-      // return response.data;
-      return ApiResponse.withSuccess(response);
+
+      return ApiResponse.withSuccess(response.data);
     } catch (e) {
-      // return e.toString();
-      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-    }
+      if (e is DioError) {
+        String msg = e.response?.data["msg"];
+        return ApiResponse.withError(msg);
+      } else {
+        return ApiResponse.withError(e.toString());
+      }    }
   }
 
   Future<ApiResponse> login({String? mobile, String? password}) async {
     try {
       Response response = await dioClient.post(
-        APIConstants.LOGIN,
-        data: {"mobile_num": mobile, "password": password},
+          APIConstants.LOGIN,
+          data: {"mobile_num": mobile, "password": password},
+          options: new Options(contentType: "application/x-www-form-urlencoded")
       );
-      return ApiResponse.withSuccess(response);
+
+      return ApiResponse.withSuccess(response.data);
     } catch (e) {
-      print(e.toString());
-      return ApiResponse.withError(e.toString());
+      if (e is DioError) {
+        String msg = e.response?.data["msg"];
+        return ApiResponse.withError(msg);
+      } else {
+        return ApiResponse.withError(e.toString());
+      }
     }
   }
 
