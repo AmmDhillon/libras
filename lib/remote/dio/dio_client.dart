@@ -6,14 +6,16 @@ import 'package:flpapp/remote/dio/logging_interceptor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DioClient {
-
   final String baseUrl;
   final LoggingInterceptor loggingInterceptor;
   // final SharedPreferences sharedPreferences;
 
   late Dio dio;
 
-  DioClient({required this.baseUrl, required this.dio, required this.loggingInterceptor}) {
+  DioClient(
+      {required this.baseUrl,
+      required this.dio,
+      required this.loggingInterceptor}) {
     dio
       ..options.baseUrl = baseUrl
       ..options.connectTimeout = 30000
@@ -26,7 +28,8 @@ class DioClient {
     dio.interceptors.add(loggingInterceptor);
   }
 
-  Future<Response> get(String uri, {
+  Future<Response> get(
+    String uri, {
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
@@ -50,7 +53,8 @@ class DioClient {
     }
   }
 
-  Future<Response> post(String uri, {
+  Future<Response> post(
+    String uri, {
     data,
     Map<String, dynamic>? queryParameters,
     Options? options,
@@ -76,7 +80,8 @@ class DioClient {
     }
   }
 
-  Future<Response> put(String uri, {
+  Future<Response> put(
+    String uri, {
     data,
     Map<String, dynamic>? queryParameters,
     Options? options,
@@ -102,7 +107,8 @@ class DioClient {
     }
   }
 
-  Future<Response> delete(String uri, {
+  Future<Response> delete(
+    String uri, {
     data,
     Map<String, dynamic>? queryParameters,
     Options? options,

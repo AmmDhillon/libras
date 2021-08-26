@@ -1,6 +1,6 @@
 import 'package:flpapp/ColorResources.dart';
 
-import 'package:flpapp/homepage.dart';
+import 'package:flpapp/dashboard.dart';
 import 'package:flpapp/remote/provider/auth_provider.dart';
 
 import 'package:flutter/material.dart';
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: ColorResources.appbarGrey,
       ),
-      home: HomePage(),
+      home: Dashboard(),
     );
   }
 }

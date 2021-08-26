@@ -83,6 +83,7 @@ class _FirstScreenState extends State<FirstScreen> {
         ],
         toolbarHeight: 100,
         title: Container(
+          margin: EdgeInsets.all(80),
           alignment: Alignment.centerLeft,
           child: Text(
             "Leebras Wealth",

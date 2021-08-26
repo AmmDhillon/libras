@@ -1,5 +1,5 @@
 import 'package:flpapp/Images.dart';
-import 'package:flpapp/homepage.dart';
+import 'package:flpapp/dashboard.dart';
 import 'package:flutter/material.dart';
 
 import 'ColorResources.dart';
@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                         }*/
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
+                          MaterialPageRoute(builder: (context) => Dashboard()),
                         );
                       },
                       child: Container(
